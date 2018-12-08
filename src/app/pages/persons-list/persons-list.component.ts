@@ -16,18 +16,18 @@ export class PersonsListComponent implements OnInit {
   constructor( private personService: PersonService) {
 
 
-    this.createContact(new Person({
-      name: 'Nome de teste',
-      email: 'ajsdiajs@mail',
-      cpf: '19478978564',
-      birthDate: new Date('1999-06-12 00:00:00') ,
-      description: 'descriççao',
-      sexo: 'M',
-      tags: ['teste', 'seilá', 'zuero'],
-      phones: ['03146797845', '031987644687'],
-      lastUpdate: new Date('2018-12-05 12:45:13')  ,
-      creationDate: new Date('2018-12-05 11:24:23')
-    }));
+    // this.createContact(new Person({
+    //   name: 'Nome de teste',
+    //   email: 'ajsdiajs@mail',
+    //   cpf: '19478978564',
+    //   birthDate: new Date('1999-06-12 00:00:00') ,
+    //   description: 'descriççao',
+    //   sexo: 'M',
+    //   tags: ['teste', 'seilá', 'zuero'],
+    //   phones: ['03146797845', '031987644687'],
+    //   lastUpdate: new Date('2018-12-05 12:45:13')  ,
+    //   creationDate: new Date('2018-12-05 11:24:23')
+    // }));
 
     this.getContactList();
    }

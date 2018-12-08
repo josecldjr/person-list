@@ -1,6 +1,7 @@
 import { Person } from './Person';
 import { Injectable } from '@angular/core';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -8,7 +9,7 @@ export class PersonService {
 
   personStorageKey = 'person-storage';
 
-  constructor() { console.log('construtor');
+  constructor() {
 
     // checa se locasStorage está disponível e avisa ao usuário caso não esteja
     if (localStorage) {
@@ -58,8 +59,11 @@ export class PersonService {
     // armazena a lista novamente no banco
     localStorage[this.personStorageKey] = JSON.stringify(personsList);
 
+    // adiciona um id ao retorn
+    person['id'] = 0;
+
     // retorna o valor que foi adicionado
-    return Object.assign({id: 0}, person);
+    return  person;
   }
 
 

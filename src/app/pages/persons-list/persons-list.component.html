@@ -1,13 +1,30 @@
 
-
-<table>
+<app-save-person-button [personsListComponent]="this">Adicionar</app-save-person-button>
+<table class="table table-stripped table-responsive">
   <thead>
-    <th></th>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>CPF</th>
+      <th>Sexo</th>
+      <th>Idade</th>
+      <th>Telefones</th>
+      <th>Tags</th>
+      <th>Ações</th>
+    </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let c of contactList" >
-      <td> {{ c._name }} </td>
-      <td> {{ c._birthDate }} </td>
+    <tr role="row" *ngFor="let c of contactList" >
+      <td> {{ c.id ? c.id : 'X' }} </td>
+      <td> {{ c.name }} </td>
+      <td> {{ c.email }} </td>
+      <td> {{ c.cpf }} </td>
+      <td> {{ c.sexo }} </td>
+      <td> {{ c.birthDate }} </td>
+      <td> {{ c.phones }} </td>
+      <td> {{ c.tags }} </td>
+      <td> ACTIONS </td>
     </tr>
   </tbody>
 </table>

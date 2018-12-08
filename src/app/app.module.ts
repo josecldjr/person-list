@@ -8,12 +8,14 @@ import { PersonsListComponent } from './pages/persons-list/persons-list.componen
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NavbarTopComponent } from './components/navbar-top/navbar-top.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { SavePersonButtonComponent } from './components/save-person-button/save-person-button.component';
 @NgModule({
   declarations: [
     AppComponent,
     PersonsListComponent,
     DashboardComponent,
-    NavbarTopComponent
+    NavbarTopComponent,
+    SavePersonButtonComponent
   ],
   imports: [
     BrowserModule,
