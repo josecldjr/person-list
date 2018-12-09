@@ -14,6 +14,8 @@ export class SavePersonButtonComponent implements OnInit {
   @Input()
   personsListComponent: PersonsListComponent ;
 
+  selectedPerson: Person;
+
   constructor() { }
 
   ngOnInit() {

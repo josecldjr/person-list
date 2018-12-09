@@ -13,22 +13,63 @@
 
         <form #savePersonModalForm (submit)="false">
 
+          <!-- nome -->
           <div class="form-group">
             <label for="personName">Nome</label>
-            <input type="text" id="personName" class="form-control" aria-describedby="personNameHelp" placeholder="Nome completo">
+            <input type="text" id="personName" class="form-control" aria-describedby="personNameHelp" placeholder="ex: Joaquim Miranda Silva">
             <small id="personNameHelp">Nome completo</small>
           </div>
 
+          <!-- CPF -->
           <div class="form-group">
             <label for="personCpf">CPF</label>
             <input type="text" id="personCpf" class="form-control" aria-describedby="personCPFHelp" placeholder="ex: 999.999.999-99">
             <small id="personCPFHelp">CPF válido</small>
           </div>
 
+          <!-- email -->
           <div class="form-group">
             <label for="personEmail">Email</label>
             <input type="text" id="personEmail" class="form-control" aria-describedby="personEmailHelp" placeholder="ex: meuemail@mail.com">
             <small id="personEmailHelp">Email válido</small>
+          </div>
+
+          <!-- data de nascimento -->
+          <div class="form-group">
+            <div class="col-sm-12 col-md-6 float-left">
+              <label for="dataNascimento">Data de nascimento</label>
+              <input type="date" id="dataNascimento" class="form-control" placeholder="dd/mm/yyyy">
+            </div>
+            <div class="col-sm-12 col-md-6 float-left">
+              <label for="sexo">Sexo</label>
+              <select id="sexo" class="form-control">
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Sexo -->
+          <div>
+              <label for="tags">Sexo</label>
+              <select id="tags" class="form-control" multiple>
+                <option value="M">Cliente</option>
+                <option value="M">Vendedor</option>
+                <option value="M">Funcionário</option>
+                <option value="M">Outros</option>
+              </select>
+          </div>
+
+          <!-- telefone 1 -->
+          <div class="form-group">
+            <label for="personPhone1">Telefone 1</label>
+            <input type="text" id="personPhone1" class="form-control" placeholder="(DDD) 9999-9999">
+          </div>
+
+          <!-- telefone 2 -->
+          <div class="form-group">
+            <label for="personPhone2">Telefone 2</label>
+            <input type="text" id="personPhone2" class="form-control" placeholder="(DDD) 9999-9999">
           </div>
 
         </form>
@@ -37,7 +78,7 @@
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Salvar</button>
+          <button type="button" class="btn btn-secondary" (click)="savePerson();close();">Salvar</button>
       </div>
     </div>
   </div>
