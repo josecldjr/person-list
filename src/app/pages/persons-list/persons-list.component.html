@@ -1,6 +1,16 @@
 
-<app-save-person-button [personsListComponent]="this">Adicionar</app-save-person-button>
-<table class="table table-stripped table-responsive">
+<ul class="col-sm-12 nav bd-navbar">
+  <!-- botão de adicionar contato -->
+  <li class="nat-item">
+    <app-save-person-button #savePerson class="nav-link" [personsListComponent]="this" >
+      <app-icon icon="fa-plus"></app-icon>
+    </app-save-person-button>
+  </li>
+</ul>
+<h5 *ngIf="contactList.length == 0" class="text-center">
+  <hr> Não há contato na sua lista
+</h5>
+<table *ngIf="contactList.length > 0"  class="table table-stripped table-hover table-responsive container">
   <thead>
     <tr>
       <th>ID</th>
@@ -24,7 +34,7 @@
       <td> {{ c.birthDate }} </td>
       <td> {{ c.phones }} </td>
       <td> {{ c.tags }} </td>
-      <td> ACTIONS </td>
+      <td> <button (click)="this.selectContactFromList(c.id)" class="btn btn-primary">Edit</button> <br> Delete </td>
     </tr>
   </tbody>
 </table>

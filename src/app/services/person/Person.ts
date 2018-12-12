@@ -2,37 +2,44 @@
 
 export class Person {
 
-  private id?: number;
-  private name: string;
-  private email: string;
-  private cpf: string;
-  private sexo;
-  private phones: Array<String>;
-  private tags: Array<String>;
-  private description: string;
-  private birthDate: Date;
-  private creationDate: Date;
-  private lastUpdate: Date;
+  id?: number;
+  name: string;
+  email: string;
+  cpf: string;
+  sexo;
+  phones: Array<String>;
+  tags: Array<String>;
+  description: string;
+  birthDate: Date;
+  creationDate: Date;
+  lastUpdate: Date;
+
 
   /**
    * Construtor
    * @param person Interface de Person
    */
-  constructor ( person) {
+  constructor ( person?) {
 
-    this.id = person.id ? person.id : null;
-    this.name = person.name;
-    this.email = person.email;
-    this.cpf = person.cpf;
-    this.sexo = person.sexo;
-    this.phones = person.phones;
-    this.tags = person.tags;
-    this.description = person.description;
-    this.birthDate = person.birthDate;
-    this.creationDate = person.creationDate;
-    this.lastUpdate = person.lastUpdate;
+    this.phones = []
+    this.tags = []
+
+    if (person) {
+      this.id = person.id ? person.id : null;
+      this.name = person.name;
+      this.email = person.email;
+      this.cpf = person.cpf;
+      this.sexo = person.sexo;
+      this.phones = person.phones;
+      this.tags = person.tags;
+      this.description = person.description;
+      this.birthDate = person.birthDate;
+      this.creationDate = person.creationDate;
+      this.lastUpdate = person.lastUpdate;
+    }
 
   }
+
 
   /**
    * Calcula a idade baseado na data de nascimento e na data atual

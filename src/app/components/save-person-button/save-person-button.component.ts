@@ -1,6 +1,7 @@
 import { PersonsListComponent } from './../../pages/persons-list/persons-list.component';
 import { Person } from './../../services/person/Person';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 declare var $: any;
 
@@ -12,31 +13,31 @@ declare var $: any;
 export class SavePersonButtonComponent implements OnInit {
 
   @Input()
-  personsListComponent: PersonsListComponent ;
+  personsListComponent: PersonsListComponent;
 
-  selectedPerson: Person;
+  @Input()
+  selectedPerson = {
+    id: null, name: null, email: null, cpf: null, sexo: null, phones: [],
+    tags: [], description: null, birthDate: null, creationDate: null, lastUpdate: null
+  };
 
   constructor() { }
 
   ngOnInit() {
 
-
   }
 
   savePerson() {
-    this.personsListComponent.createContact(new Person({
-      name: 'Nome de teste',
-      email: 'ajsdiajs@mail',
-      cpf: '19478978564',
-      birthDate: new Date('1999-06-12 00:00:00') ,
-      description: 'descriççao',
-      sexo: 'M',
-      tags: ['teste', 'seilá', 'zuero'],
-      phones: ['03146797845', '031987644687'],
-      lastUpdate: new Date('2018-12-05 12:45:13')  ,
-      creationDate: new Date('2018-12-05 11:24:23')
-    }));
+    this.personsListComponent.createContact(new Person(this.selectedPerson));
 
+    this.resetSelectedperson();
+  }
+
+  private resetSelectedperson() {
+    this.selectedPerson = {
+      id: null, name: null, email: null, cpf: null, sexo: null, phones: [],
+      tags: [], description: null, birthDate: null, creationDate: null, lastUpdate: null
+    };
   }
 
   open() {
@@ -45,6 +46,8 @@ export class SavePersonButtonComponent implements OnInit {
 
   close() {
     $('#save-person-modal').modal('hide');
+
+    this.resetSelectedperson();
   }
 
 }

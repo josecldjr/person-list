@@ -9,18 +9,22 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NavbarTopComponent } from './components/navbar-top/navbar-top.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SavePersonButtonComponent } from './components/save-person-button/save-person-button.component';
+import { IconComponent } from './components/icon/icon.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     PersonsListComponent,
     DashboardComponent,
     NavbarTopComponent,
-    SavePersonButtonComponent
+    SavePersonButtonComponent,
+    IconComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [PersonService],
   bootstrap: [AppComponent]

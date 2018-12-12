@@ -1,7 +1,8 @@
 import { PersonService } from './../../services/person/person.service';
 import { Person } from './../../services/person/Person';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
+import { SavePersonButtonComponent } from '../../components/save-person-button/save-person-button.component';
 
 @Component({
   selector: 'app-persons-list',
@@ -12,6 +13,9 @@ export class PersonsListComponent implements OnInit {
 
   /** Lista de contatos */
   public contactList: Array<Person> =  new Array<Person>();
+
+  @ViewChild('savePerson')
+  public p;
 
   constructor( private personService: PersonService) {
 
@@ -46,6 +50,20 @@ export class PersonsListComponent implements OnInit {
     const resultPerson = this.personService.create(person);
 
     this.contactList.push(resultPerson);
+  }
+
+  selectContactFromList(id: number) {
+
+    this.p.open();
+
+    this.contactList.forEach( e => {
+      if (e.id === id) {
+        this.p.selectedPerson = e;
+      }
+    });
+
+    console.log('calling select');
+
   }
 
 }

@@ -1,8 +1,8 @@
-<button type="button" class="btn btn-primary" data-target="#save-person-modal" data-toggle="modal">
+<button type="button" class="btn btn-primary" style="z-index:-1" data-target="#save-person-modal" data-toggle="modal">
   <ng-content></ng-content>
 </button>
 
-<div id="save-person-modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="save-person-modal" class="modal fade bd-example-modal-lg"  role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -11,26 +11,26 @@
       <div class="modal-body">
         <!-- Formumlário início -->
 
-        <form #savePersonModalForm (submit)="false">
+        <form #form (submit)="false">
 
           <!-- nome -->
           <div class="form-group">
             <label for="personName">Nome</label>
-            <input type="text" id="personName" class="form-control" aria-describedby="personNameHelp" placeholder="ex: Joaquim Miranda Silva">
+            <input title="personName" name="personName" [(ngModel)]="selectedPerson.name" type="text" id="personName" class="form-control" maxlength="50" aria-describedby="personNameHelp" placeholder="ex: Joaquim Miranda Silva">
             <small id="personNameHelp">Nome completo</small>
           </div>
 
           <!-- CPF -->
           <div class="form-group">
             <label for="personCpf">CPF</label>
-            <input type="text" id="personCpf" class="form-control" aria-describedby="personCPFHelp" placeholder="ex: 999.999.999-99">
+            <input title="personCpf" name="personCpf" [(ngModel)]="selectedPerson.cpf" type="text" id="personCpf" class="form-control" maxlength="12" aria-describedby="personCPFHelp" placeholder="ex: 999.999.999-99">
             <small id="personCPFHelp">CPF válido</small>
           </div>
 
           <!-- email -->
           <div class="form-group">
             <label for="personEmail">Email</label>
-            <input type="text" id="personEmail" class="form-control" aria-describedby="personEmailHelp" placeholder="ex: meuemail@mail.com">
+            <input type="text" id="personEmail" name="personEmail" [(ngModel)]="selectedPerson.email" class="form-control" maxlength="255" aria-describedby="personEmailHelp" placeholder="ex: meuemail@mail.com">
             <small id="personEmailHelp">Email válido</small>
           </div>
 
@@ -38,11 +38,11 @@
           <div class="form-group">
             <div class="col-sm-12 col-md-6 float-left">
               <label for="dataNascimento">Data de nascimento</label>
-              <input type="date" id="dataNascimento" class="form-control" placeholder="dd/mm/yyyy">
+              <input type="date" id="dataNascimento" name="personBirthDate" [(ngModel)]="selectedPerson.birthDate" class="form-control" placeholder="dd/mm/yyyy">
             </div>
             <div class="col-sm-12 col-md-6 float-left">
               <label for="sexo">Sexo</label>
-              <select id="sexo" class="form-control">
+              <select id="sexo" name="personSexo" [(ngModel)]="selectedPerson.sexo" class="form-control">
                 <option value="M">Masculino</option>
                 <option value="F">Feminino</option>
               </select>
@@ -51,25 +51,25 @@
 
           <!-- Sexo -->
           <div>
-              <label for="tags">Sexo</label>
-              <select id="tags" class="form-control" multiple>
-                <option value="M">Cliente</option>
-                <option value="M">Vendedor</option>
-                <option value="M">Funcionário</option>
-                <option value="M">Outros</option>
+              <label for="tags">Tags</label>
+              <select id="tags"name="personCpf" [(ngModel)]="selectedPerson.tags" class="form-control" multiple>
+                <option value="Cliente">Cliente</option>
+                <option value="Vendedor">Vendedor</option>
+                <option value="Funcionário">Funcionário</option>
+                <option value="Outros">Outros</option>
               </select>
           </div>
 
           <!-- telefone 1 -->
           <div class="form-group">
             <label for="personPhone1">Telefone 1</label>
-            <input type="text" id="personPhone1" class="form-control" placeholder="(DDD) 9999-9999">
+            <input type="text" id="personPhone1" name="personPhone[]" [(ngModel)]="selectedPerson.phones[0]" class="form-control" maxlength="20" placeholder="(DDD) 9999-9999">
           </div>
 
           <!-- telefone 2 -->
           <div class="form-group">
             <label for="personPhone2">Telefone 2</label>
-            <input type="text" id="personPhone2" class="form-control" placeholder="(DDD) 9999-9999">
+            <input type="text" id="personPhone2" name="personPhone[]" [(ngModel)]="selectedPerson.phones[1]" class="form-control" maxlength="20" placeholder="(DDD) 9999-9999">
           </div>
 
         </form>

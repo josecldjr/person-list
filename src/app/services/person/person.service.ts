@@ -26,7 +26,7 @@ export class PersonService {
       alert('A funcionalidade locasStorage não está disponível, isso pode influenciar no funcionamento da aplicação.');
     }
 
-   }
+  }
 
    /**
     * Lista todos os contatos no banco local
@@ -43,6 +43,28 @@ export class PersonService {
   }
 
   /**
+   * retorna uma pessoa à partir do id
+   */
+  getById(id: number) {
+    // busca pessoas no banco de dados
+    const personList = this.list();
+    // variável de retorno
+    let r = null;
+
+    // percorre o vetor procurando pelo id especificado
+    personList.forEach( (e) => {
+
+      if (e.id === id) { // id = index?
+        // retorna o element
+        r = e;
+       }
+    });
+
+    // retorna null, caso não haja o id não esteja presente no vetor
+    return r;
+  }
+
+  /**
    *  Adiciona uma pessoa ao banco local
    * @param person Objeto que será adicionado
    */
@@ -53,17 +75,25 @@ export class PersonService {
     // lê os contatos no banco
     personsList = this.list();
 
+     // adiciona um id ao retorn
+     person['id'] = Math.floor( Math.random() * 99999);
+
     // adiciona uma pessoa à lista
     personsList.push(person);
 
     // armazena a lista novamente no banco
     localStorage[this.personStorageKey] = JSON.stringify(personsList);
 
-    // adiciona um id ao retorn
-    person['id'] = 0;
-
     // retorna o valor que foi adicionado
     return  person;
+  }
+
+  deletePerson(id: number){
+    let personList = this.list();
+
+    personList.forEach( e => {
+      // TODO: IMPLEMENTAR DELEÇÃO
+    })
   }
 
 
