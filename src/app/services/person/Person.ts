@@ -21,8 +21,8 @@ export class Person {
    */
   constructor ( person?) {
 
-    this.phones = []
-    this.tags = []
+    this.phones = [];
+    this.tags = [];
 
     if (person) {
       this.id = person.id ? person.id : null;

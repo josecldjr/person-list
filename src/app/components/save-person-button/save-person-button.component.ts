@@ -12,9 +12,11 @@ declare var $: any;
 })
 export class SavePersonButtonComponent implements OnInit {
 
+  /** referência ao componente de lista de pessoas */
   @Input()
   personsListComponent: PersonsListComponent;
 
+  /** Pessoa atualmente selecionada */
   @Input()
   selectedPerson = {
     id: null, name: null, email: null, cpf: null, sexo: null, phones: [],
@@ -27,12 +29,22 @@ export class SavePersonButtonComponent implements OnInit {
 
   }
 
+  /**
+   * Cria uma pessoa (caso id seja igual a null ) ou altera uma já existente
+   */
   savePerson() {
-    this.personsListComponent.createContact(new Person(this.selectedPerson));
+    if (!this.selectedPerson.id) {
+      this.personsListComponent.createContact(new Person(this.selectedPerson));
+    } else {
+      this.personsListComponent.updateContact(new Person(this.selectedPerson));
+    }
 
     this.resetSelectedperson();
   }
 
+  /**
+   * Reseta a pessoa selecionada no momente // desseleciona a atual
+   */
   private resetSelectedperson() {
     this.selectedPerson = {
       id: null, name: null, email: null, cpf: null, sexo: null, phones: [],
@@ -40,10 +52,16 @@ export class SavePersonButtonComponent implements OnInit {
     };
   }
 
+  /**
+   * Abre o modal de criar pessoa
+   */
   open() {
     $('#save-person-modal').modal('show');
   }
 
+  /**
+   * Fecha o modal de cria pessoa
+   */
   close() {
     $('#save-person-modal').modal('hide');
 

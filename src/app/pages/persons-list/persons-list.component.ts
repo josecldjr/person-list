@@ -18,40 +18,69 @@ export class PersonsListComponent implements OnInit {
   public p;
 
   constructor( private personService: PersonService) {
-
-
-    // this.createContact(new Person({
-    //   name: 'Nome de teste',
-    //   email: 'ajsdiajs@mail',
-    //   cpf: '19478978564',
-    //   birthDate: new Date('1999-06-12 00:00:00') ,
-    //   description: 'descriççao',
-    //   sexo: 'M',
-    //   tags: ['teste', 'seilá', 'zuero'],
-    //   phones: ['03146797845', '031987644687'],
-    //   lastUpdate: new Date('2018-12-05 12:45:13')  ,
-    //   creationDate: new Date('2018-12-05 11:24:23')
-    // }));
-
     this.getContactList();
    }
 
   ngOnInit() {
   }
 
+  /**
+   * Busca a lista de contatos do banco local
+   */
   getContactList() {
     this.contactList = this.personService.list();
-
-    console.log(this.contactList);
-
   }
 
+  /**
+   * Adiciona um contato
+   * @param person pessoa que será criada
+   */
   createContact(person: Person) {
+    // resultado da operação de criar contato
     const resultPerson = this.personService.create(person);
 
+    // adiciona o contato criado à lista para visualização
     this.contactList.push(resultPerson);
   }
 
+  /**
+   * Altera um contato já existente à partir do id do mesmo
+   * @param person pessoa que será alterada
+   */
+  updateContact(person: Person) {
+    // armazena o resultado da operação
+    const resultPerson = this.personService.update(person);
+
+    // altera a lista de pessoas caso o resultado seja positivo
+    if (resultPerson) {
+      this.contactList.forEach((e, i) => {
+        if (e.id === person.id) {
+          this.contactList[i] = person;
+        }
+      });
+    }
+  }
+
+  /**
+   * Deleta uma pessoa à partir do id
+   * @param id id da pesoa que será deletada
+   */
+  deleteContact(id: number) {
+    const deleteResult = this.personService.deletePerson(id);
+
+    if (deleteResult) {
+      this.contactList.forEach((e, i) => {
+        if (e.id === id) {
+          this.contactList.splice(i, 1);
+        }
+      });
+    }
+  }
+
+  /**
+   * Seleciona um contato à partir do id
+   * @param id id do contato
+   */
   selectContactFromList(id: number) {
 
     this.p.open();
@@ -61,8 +90,6 @@ export class PersonsListComponent implements OnInit {
         this.p.selectedPerson = e;
       }
     });
-
-    console.log('calling select');
 
   }
 

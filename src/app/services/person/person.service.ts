@@ -44,6 +44,7 @@ export class PersonService {
 
   /**
    * retorna uma pessoa à partir do id
+   * @param id da pessoa
    */
   getById(id: number) {
     // busca pessoas no banco de dados
@@ -88,12 +89,58 @@ export class PersonService {
     return  person;
   }
 
-  deletePerson(id: number){
-    let personList = this.list();
+  /**
+   * altera uma pessoa à partir do id da mesma
+   * @param person pessoa que será alterada
+   */
+  update(person: Person): Person {
+    // checa se o id é válido
+    if (!person.id) {
+      throw new Error('ID inválido');
+    }
 
-    personList.forEach( e => {
-      // TODO: IMPLEMENTAR DELEÇÃO
-    })
+    // busca a lista de pessoas no banco local
+    const personList = this.list();
+
+    // altera a pessoa na lista
+    personList.forEach( (e, i) => {
+      if (e.id === person.id) {
+        personList.splice(i, 1);
+      }
+    });
+
+    // armazena a lista novamente no banco
+    localStorage[this.personStorageKey] = JSON.stringify(personList);
+
+    return person;
+  }
+
+  /**
+   * Deleta uma pessoa no banco local
+   * @param id id da pessoa
+   */
+  deletePerson(id: number): boolean {
+    // busca a lista no banco local
+    const personList = this.list();
+
+    // delete a pessoa da lista
+    personList.forEach( (e, i) => {
+      if ( e.id === id) {
+        personList.splice(i, 1);
+      }
+    });
+
+    try {
+      // armazena a lista novamente no banco local
+      localStorage[this.personStorageKey] = JSON.stringify(personList);
+    } catch {
+      // retorna false caso haja algum problema na deleção
+      return false;
+
+    }
+
+    // caso não haja erros será retornado true
+    return true;
   }
 
 

@@ -8,7 +8,7 @@
   </li>
 </ul>
 <h5 *ngIf="contactList.length == 0" class="text-center">
-  <hr> Não há contato na sua lista
+  <hr> Não há contatos na sua lista
 </h5>
 <table *ngIf="contactList.length > 0"  class="table table-stripped table-hover table-responsive container">
   <thead>
@@ -34,7 +34,10 @@
       <td> {{ c.birthDate }} </td>
       <td> {{ c.phones }} </td>
       <td> {{ c.tags }} </td>
-      <td> <button (click)="this.selectContactFromList(c.id)" class="btn btn-primary">Edit</button> <br> Delete </td>
+      <td>
+        <button (click)="this.selectContactFromList(c.id)" class="btn btn-primary">Edit</button> <br>
+        <button (click)="this.deleteContact(c.id)" class="btn btn-primary">Delete</button>
+      </td>
     </tr>
   </tbody>
 </table>
